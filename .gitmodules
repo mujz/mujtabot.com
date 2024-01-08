@@ -1,0 +1,6 @@
+[submodule "themes/hugo-video"]
+  path = themes/hugo-video
+  url = git@github.com:mujz/hugo-video.git
+[submodule "themes/PaperMod"]
+  path = themes/PaperMod
+  url = git@github.com:adityatelange/hugo-PaperMod.git
