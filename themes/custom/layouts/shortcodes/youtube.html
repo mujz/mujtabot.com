@@ -1,0 +1,16 @@
+{{ $.Scratch.Set "title" "" }}
+{{ $.Scratch.Set "src" "" }}
+{{ $.Scratch.Set "vertical" false }}
+
+{{ if .IsNamedParams }}
+  {{ $.Scratch.Set "title" (.Get "title") }}
+  {{ $.Scratch.Set "src" (.Get "src") }}
+  {{ if .Get "vertical" }}
+    {{ $.Scratch.Set "vertical" (.Get "vertical") }}
+  {{ end }}
+{{ else }}
+  {{ $.Scratch.Set "title" (.Get 0) }}
+  {{ $.Scratch.Set "src" (.Get 1) }}
+{{ end }}
+
+<iframe width="{{ cond ($.Scratch.Get "vertical") "315" "560" }}" height="{{ cond ($.Scratch.Get "vertical") "560" "315" }}" src="{{ $.Scratch.Get "src" }}" title="{{ $.Scratch.Get "title" }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
