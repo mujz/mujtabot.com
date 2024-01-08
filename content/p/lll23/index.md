@@ -1,5 +1,5 @@
 ---
-title: "Life Long Learners club"
+title: "Life Long Learners club (2023)"
 date: 2023-10-08T11:30:00+03:00
 cover:
     image: "life-long-learners.jpg" # image path/url
