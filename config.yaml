@@ -22,8 +22,7 @@ params:
   keywords: [Blog, Portfolio, Newsletter, Books, Learning, Education]
   # author: Me
   # author: ["Me", "You"] # multiple authors
-  # TODO
-  # images: ["<link or path of image for opengraph, twitter-cards>"]
+  images: ["/muj-on-sup-cropped.jpg"]
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
@@ -47,7 +46,6 @@ params:
   assets:
     # disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    # TODO
     # favicon: "<link / abs url>"
     # favicon16x16: "<link / abs url>"
     # favicon32x32: "<link / abs url>"
@@ -80,13 +78,12 @@ params:
     # Content: Welcome to my blog
 
   socialIcons:
-    # TODO
-    - name: twitter
-      url: "https://twitter.com/"
-    - name: stackoverflow
-      url: "https://stackoverflow.com"
-    - name: github
-      url: "https://github.com/"
+    - name: Goodreads
+      url: "https://www.goodreads.com/user/show/35399941-mujtaba-al-tameemi"
+    - name: Telegram
+      url: "https://t.me/mujzuh"
+    - name: Instagram
+      url: "https://instagram.com/muj.living"
 
   # TODO
   analytics:
@@ -102,9 +99,8 @@ params:
     hiddenInList: false # hide on list pages and home
     hiddenInSingle: true # hide on single page
 
-  # TODO
   editPost:
-    URL: "https://github.com/<path_to_repo>/content"
+    URL: "https://github.com/mujz/mujtabot.com/blob/main/content"
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 
