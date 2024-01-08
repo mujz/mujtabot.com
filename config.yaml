@@ -28,7 +28,7 @@ params:
   disableThemeToggle: false
 
   ShowReadingTime: true
-  ShowShareButtons: true
+  ShowShareButtons: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
@@ -42,6 +42,8 @@ params:
   hideSummary: false
   showtoc: false
   tocopen: false
+
+  graphCommentId: "mujtabot"
 
   assets:
     # disableHLJS: true # to disable highlight.js
