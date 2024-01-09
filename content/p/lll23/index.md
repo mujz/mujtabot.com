@@ -1,10 +1,10 @@
 ---
-title: "Life Long Learners club (2023)"
+title: "Lifelong Learners club (2023)"
 date: 2023-10-08T11:30:00+03:00
 cover:
     image: "life-long-learners.jpg" # image path/url
-    alt: "Life Long Learners" # alt text
-    caption: "Life Long Learners" # display caption under cover
+    alt: "Lifelong Learners" # alt text
+    caption: "Lifelong Learners" # display caption under cover
     relative: false # when using page bundles set this to true
     hiddenInSingle: false
 ---

@@ -115,7 +115,15 @@ The main theme from last week was renovating the Safe House, so it can welcome i
 
 — Rumi
 
-> When creating, be kind to your doubt. Hear it out. Thank it for its concern. And reassure it that you are an artist, and risk is essential.
+> When creating, be kind to your doubt.
+>
+> Hear it out.
+>
+> Thank it for its concern.
+>
+> And reassure it that you are an artist,
+>
+> and risk is essential.
 >
 
 — Nayyirah Waheed
