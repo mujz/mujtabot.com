@@ -1,0 +1,67 @@
+{{/* Parameters Begin */}}
+{{- $img := .Get "img" }}
+{{- $addLink := .Get "linkFullImg" }}
+{{- $alt := (.Get "alt" | plainify) }}
+{{- $imgCaption := .Get "imgCaption" }}
+{{- $title := .Get "title" }}
+{{- $content := .Inner }}
+{{- $footer := .Get "footer" }}
+{{- $href := .Get "href" }}
+{{/* Parameters End */}}
+
+<div class="card">
+  {{- if $img }}
+  <figure class="card-cover">
+      {{- $pageBundleImg     := (.Page.Resources.ByType "image").GetMatch (printf "*%s*" $img) }}
+      {{- $globalResourcesImg := (resources.ByType "image").GetMatch (printf "*%s*" $img) }}
+      {{- $cover := (or $pageBundleImg $globalResourcesImg)}}
+      {{- if $cover -}}{{/* i.e it is present in page bundle */}}
+          {{- if $addLink }}<a href="{{ (path.Join .RelPermalink $img) | absURL }}" target="_blank"
+              rel="noopener noreferrer">{{ end -}}
+          {{- $sizes := (slice "360" "480" "720" "1080" "1500") }}
+          {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
+          {{- if hugo.IsExtended -}}
+              {{- $processableFormats = $processableFormats | append "webp" -}}
+          {{- end -}}
+          {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
+          {{- if (and (in $processableFormats $cover.MediaType.SubType) (eq $prod true)) }}
+          <img loading="lazy" srcset="{{- range $size := $sizes -}}
+                          {{- if (ge $cover.Width $size) -}}
+                          {{ printf "%s %s" (($cover.Resize (printf "%sx" $size)).Permalink) (printf "%sw ," $size) -}}
+                          {{ end }}
+                      {{- end -}}{{$cover.Permalink }} {{printf "%dw" ($cover.Width)}}"
+              sizes="(min-width: 768px) 720px, 100vw" src="{{ $cover.Permalink }}" alt="{{ $alt }}"
+              width="{{ $cover.Width }}" height="{{ $cover.Height }}">
+          {{- else }}{{/* Unprocessable image */}}
+          <img loading="lazy" src="{{ (path.Join .RelPermalink $img) | absURL }}" alt="{{ $alt }}">
+          {{- end }}
+      {{- else }}{{/* For absolute urls and external links, no img processing here */}}
+          {{- if $addLink }}<a href="{{ $img | absURL }}" target="_blank"
+              rel="noopener noreferrer">{{ end -}}
+              <img loading="lazy" src="{{ $img | absURL }}" alt="{{ $alt }}">
+      {{- end }}
+      {{- if $addLink }}</a>{{ end -}}
+      {{/*  Display Caption  */}}
+      {{- if $imgCaption }}<p>{{ $imgCaption | markdownify }}</p> {{- end }}
+  </figure>
+  {{- end }}{{/* End image */}}
+
+  <div class="card-container">
+    <header class="card-header">
+      <h2 class="card-hint-parent">
+        {{- $title }}
+      </h2>
+    </header>
+    {{- if $content }}
+    <div class="card-content">
+      <p>{{ $content | markdownify }}</p>
+    </div>
+    {{- end }}
+    {{- if $footer }}
+    <footer class="card-footer">{{ $footer | markdownify }}</footer>
+    {{- end }}
+    {{- if $href }}
+    <a class="card-link" aria-label="link to {{ $title | plainify }}" href="{{ $href }}"></a>
+    {{- end }}
+  </div>
+</div>
