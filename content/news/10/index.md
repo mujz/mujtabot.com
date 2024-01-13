@@ -2,8 +2,8 @@
 title: "Jan 13"
 date: 2024-01-13T11:30:00+03:00
 cover:
-    image: "" # image path/url
-    alt: "" # alt text
+    image: "sitting-in-the-park.jpg" # image path/url
+    alt: "Muj and Mina sitting in the park" # alt text
     relative: true # when using page bundles set this to true
 ---
 In this issue, I ask for your help on a decision I need to make. Please share your
@@ -33,7 +33,7 @@ created a fun reel about it and will post it soon on her
 [personal Instagram](https://www.instagram.com/mina.walaa/).
 Subscribe to her if you don't want to miss it.
 
-{{<video width="50%" src="biking.mp4">}}
+{{<video width="75%" src="biking.mp4">}}
 
 ### @Me
 
