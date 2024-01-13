@@ -1,6 +1,7 @@
 ---
 title: "Lifelong Learners club (2024)"
 date: 2024-01-08T20:30:00+03:00
+description: 'Are you eager to be part of a vibrant community of lifelong learners who gather weekly to discuss the information they collect and turn it into insights that expand their horizons?'
 cover:
     image: "life-long-learners.jpg" # image path/url
     alt: "Lifelong Learners" # alt text
@@ -9,18 +10,10 @@ cover:
     hiddenInSingle: false
 ---
 {{<callout>}}
-Are you eager to be part of a vibrant community of lifelong learners who gather
-weekly to discuss the information they collect and turn it into insights that expand
-their horizons?
+Are you eager to join a vibrant community of lifelong learners? Every week, we come
+together to transform knowledge into powerful insights, expanding our horizons and
+fostering a culture of continuous discovery.
 {{</callout>}}
-
-{{<callout>}}
-Ready to join a dynamic community of lifelong learners? Every week, we come together
-to transform collected knowledge into powerful insights, expanding our horizons and
-fostering a vibrant culture of continuous discovery.
-{{</callout>}}
-
-Which of the above 👆 reads better in your opinion? Please let me know.
 
 ## Why?
 
@@ -37,7 +30,7 @@ can apply it in our lives.**
 
 According to Bloom's Taxonomy, which is a classification of the levels of learning
 meant to help educators design better learning experiences, remembering is the lowest
-order of learning. At best, this is what we'll get if we consume content without
+order of learning. At best, this is what we get when we consume content without
 discussing or applying it. In this club, we will tap into the higher orders of
 thinking skills, making the information we receive much more applicable, and
 ultimately enriching our lives.
