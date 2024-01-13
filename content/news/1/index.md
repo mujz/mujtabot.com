@@ -14,7 +14,7 @@ This is going to stay as an experiment and will likely undergo lots of changes u
 
 ### @Work
 
-- We started the [learner’s club]({{<ref "p/lll23">}}) on October 25, 2023!
+- We started the [learner’s club]({{<ref "p/lll24">}}) on October 25, 2023!
     - Everybody in the club is excited for the journey we’re starting together.
     - We had a meeting on:
     [The Science of Recharging on Weekends and Vacations | WorkLife with Adam Grant](https://podcasts.apple.com/tr/podcast/worklife-with-adam-grant/id1346314086?i=1000629096574).
