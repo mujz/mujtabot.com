@@ -4,7 +4,7 @@ date: 2023-12-05T11:30:00+03:00
 cover:
     image: "cover.jpg" # image path/url
     alt: "Murtadha at the doctor" # alt text
-    relative: false # when using page bundles set this to true
+    relative: true # when using page bundles set this to true
 ---
 Bazooni got sick this Monday, taking all my attention away from publishing the newsletter to caring for her. It’s been heart-wrenching seeing her like this.
 

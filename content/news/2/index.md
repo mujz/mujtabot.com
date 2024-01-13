@@ -4,7 +4,7 @@ date: 2023-11-13T11:30:00+03:00
 cover:
     image: "cover.jpg" # image path/url
     alt: "Riding bicycle in Baghdad" # alt text
-    relative: false # when using page bundles set this to true
+    relative: true # when using page bundles set this to true
 ---
 Since this week was my first in Baghdad, the main theme is around settling in and getting a new home established.
 

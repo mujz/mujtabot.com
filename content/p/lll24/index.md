@@ -6,7 +6,7 @@ cover:
     image: "life-long-learners.jpg" # image path/url
     alt: "Lifelong Learners" # alt text
     caption: "Lifelong Learners" # display caption under cover
-    relative: false # when using page bundles set this to true
+    relative: true # when using page bundles set this to true
     hiddenInSingle: false
 ---
 {{<callout>}}

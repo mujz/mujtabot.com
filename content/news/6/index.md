@@ -4,7 +4,7 @@ date: 2023-12-11T11:30:00+03:00
 cover:
     image: "1.jpg" # image path/url
     alt: "Mina carrying Bazooni at a farm" # alt text
-    relative: false # when using page bundles set this to true
+    relative: true # when using page bundles set this to true
 ---
 Last Tuesday morning, at around 7am, Bazooni died after catching an illness, which we failed to identify, and enduring it for one and half day. Bazooni was our playful, adorable, and loving cat. She lived for three and half years, from which we got to be part of the last three.
 

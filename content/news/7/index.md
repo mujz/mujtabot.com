@@ -4,7 +4,7 @@ date: 2023-12-20T11:30:00+03:00
 cover:
     image: "4.jpg" # image path/url
     alt: "Group photo with Mina's family" # alt text
-    relative: false # when using page bundles set this to true
+    relative: true # when using page bundles set this to true
 ---
 The theme of the last week and a half is working on house projects. It’s been a lot of fun building furniture with wood and bricks. I made this video to show you what we’ve been building.
 

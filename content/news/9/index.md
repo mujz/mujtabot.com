@@ -4,7 +4,7 @@ date: 2024-01-06T11:30:00+03:00
 cover:
     image: "1.jpg" # image path/url
     alt: "Everybody gathered for our potluck dinner" # alt text
-    relative: false # when using page bundles set this to true
+    relative: true # when using page bundles set this to true
 ---
 This week was about celebrating the new year with friends and family, cold water exposure, and dealing with big open questions.
 

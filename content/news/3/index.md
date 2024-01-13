@@ -4,7 +4,7 @@ date: 2023-11-20T11:30:00+03:00
 cover:
     image: "2.jpg" # image path/url
     alt: "Resting after hardwork at our new home" # alt text
-    relative: false # when using page bundles set this to true
+    relative: true # when using page bundles set this to true
 ---
 The main theme from last week was setting up our new home in Baghdad and reconnecting with good friends.
 

@@ -4,7 +4,7 @@ date: 2023-12-30T11:30:00+03:00
 cover:
     image: "1.jpg" # image path/url
     alt: "Photo from the bus ride back" # alt text
-    relative: false # when using page bundles set this to true
+    relative: true # when using page bundles set this to true
 ---
 This week was about prioritizing what matters most: being with family, connecting with friends, and spending time in nature.
 

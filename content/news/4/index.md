@@ -4,7 +4,7 @@ date: 2023-11-27T11:30:00+03:00
 cover:
     image: "3.jpg" # image path/url
     alt: "Reading Learning True Love" # alt text
-    relative: false # when using page bundles set this to true
+    relative: true # when using page bundles set this to true
 ---
 The main theme from last week was untangling a legal mess that my friend got into jail for due to having a name matching that of an ISIS member.
 

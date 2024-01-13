@@ -4,7 +4,7 @@ date: 2023-11-06T11:30:00+03:00
 cover:
     image: "3.jpg" # image path/url
     alt: "Muj Mina Bazooni @ Airport" # alt text
-    relative: false # when using page bundles set this to true
+    relative: true # when using page bundles set this to true
 ---
 This is the first newsletter issue, so it’ll span 2 weeks instead of 1. Moving forward, I’ll keep a cadence of 1-week, and send it out on Sunday.
 
