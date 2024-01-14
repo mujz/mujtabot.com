@@ -15,7 +15,7 @@
       </span>
       {{- end }}
     </h1>
-    {{- if .Description }}
+    {{- if (and .Description (not (.Param "hideDescriptionInSingle"))) }}
     <div class="post-description">
       {{ .Description }}
     </div>
