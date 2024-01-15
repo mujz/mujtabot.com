@@ -1,11 +1,14 @@
 ---
 title: "Lifelong Learners club (2024)"
-date: 2024-01-08T20:30:00+03:00
+date: 2024-01-15T13:30:00+03:00
 description: |
     Are you eager to join a vibrant community of lifelong learners? Every week, we
     come together to transform knowledge into powerful insights, expanding our
     horizons and fostering a culture of continuous discovery.
 hideDescriptionInSingle: true
+ShowReadingTime: false
+editPost:
+    disabled: true
 cover:
     image: "life-long-learners.jpg" # image path/url
     alt: "Lifelong Learners" # alt text
@@ -21,11 +24,14 @@ fostering a culture of continuous discovery.
 
 ## Why?
 
-Have you ever listened to a podcast full of golden lessons, then filled with
-excitement, you go telling your friend about it, but as you start talking, you
-realize that (1) you are struggling to explain it coherently because you have gaps in
-your understanding, and (2) your friend had also listened to the same podcast and
-picked out valuable insights you had missed? We've all been there.
+Here's what motivated us to kick off this club:
+
+* In a world with so much to do all the time, we sometimes defer learning to let
+  distractions rob our time.
+* When we do have the time to learn, we struggle to choose what to give our attention
+  to.
+* The lessons we learn remain elusive, escaping our memory as time passes.
+* We like hanging out in meaningful forums, but they're too hard to find these days.
 
 **This club provides an environment where we digest and absorb what we learn, so we
 can apply it in our lives.**
@@ -66,7 +72,7 @@ We always put 100% into everything we do.
 {{<card title="Succeed together" img="together.jpg" >}}
 We build on each other's strengths to make every interaction awesome.
 {{</card>}}
-{{<card title="Listen intently" img="debate.jpg" >}}
+{{<card title="Listen intently" img="listen.jpg" >}}
 "Seek first to understand then to be understood."
 {{</card>}}
 {{<card title="Passionately debate" img="debate.jpg" >}}
@@ -106,21 +112,23 @@ after that together.
 
 🗓️ **Wednesday, Jan 24**
 
-🧑‍💻 on Zoom or Google Meet
+You can join via 🧑‍💻 **Zoom** or by coming over to 🛋️ **our living room** in Baghdad,
+where I'll be serving you my favorite tea and Mina her cake.
 
 We’ll have weekly calls thereafter.
 
 ## Membership
 
 It is our goal to make this club as accessible as possible while also covering
-expenses. So we have made the following “small, medium and large” per-session price
-tiers available:
+expenses. So we have made the following “small, medium and large” price tiers
+available per 2-hour session. Regardless of which price tier you choose, you get the
+same experience:
 
-* 🛹 S: $8 if it’s a stretch for you to be investing in this club at the moment,
+* 🛹 S: $10 if it’s a stretch for you to be investing in this club at the moment,
   please choose this tier.
-* 🚲 M: $12 if you are financially stable and don’t have to think too much about
+* 🚲 M: $16 if you are financially stable and don’t have to think too much about
   whether you can afford this club, please choose this tier.
-* 🏎️ L: $20 if you are financially flourishing, you have the opportunity to
+* 🏎️ L: $22 if you are financially flourishing, you have the opportunity to
   contribute to our scholarship fund and enable people with fewer resources to also
   participate.
 
@@ -131,6 +139,10 @@ most to us, not the price.
 We ask all new members to start out with a 2-month membership period to give enough
 time for evaluating their club membership. After that, renewals can be done on a
 monthly basis.
+{{</callout>}}
+
+{{<callout>}}
+**To keep our meetings valuable, we limit the number of members to no more than 7.**
 {{</callout>}}
 
 ## Financial Transparency
