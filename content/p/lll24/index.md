@@ -33,8 +33,9 @@ Here's what motivated us to kick off this club:
 * The lessons we learn remain elusive, escaping our memory as time passes.
 * We like hanging out in meaningful forums, but they're too hard to find these days.
 
-**This club provides an environment where we digest and absorb what we learn, so we
-can apply it in our lives.**
+**By joining this club, we get to learn together from a curated list of juicy 🎧
+podcasts, 📺 videos, and 📄 articles, and we support each other in making these
+invaluable lessons applicable to our own lives.**
 
 ![Bloom's Taxonomy](blooms-taxonomy.jpg)
 
@@ -52,7 +53,7 @@ Every week:
 1. Then we all get into a meeting and discuss what we learned.
 
 In order to absorb more from the learning material as we take it in, we'll learn what
-we can do to increase our presence and memory, through practices such as non-linear
+we can do to increase our attention and memory, through practices such as non-linear
 note-taking.
 
 Additionally, during our discussions we will craft ways to incorporate and apply the
@@ -110,12 +111,10 @@ after that together.
 
 ## Our weekly calls will start on …
 
-🗓️ **Wednesday, Jan 24**
+🗓️ **Wednesday, Jan 31**
 
 You can join via 🧑‍💻 **Zoom** or by coming over to 🛋️ **our living room** in Baghdad,
-where I'll be serving you my favorite tea and Mina her cake.
-
-We’ll have weekly calls thereafter.
+where I'll be serving you my favorite tea and Mina her homemade cake.
 
 ## Membership
 
