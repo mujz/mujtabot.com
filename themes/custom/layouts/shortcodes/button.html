@@ -1,0 +1,7 @@
+{{/* Parameters Begin */}}
+{{- $href := .Get "href" }}
+{{/* Parameters End */}}
+
+<a class="btn" href="{{$href}}">
+  {{ .Inner | markdownify }}
+</a>
