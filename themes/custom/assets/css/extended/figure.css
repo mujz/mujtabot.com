@@ -1,0 +1,7 @@
+figure>figcaption {
+  text-align: center;
+}
+
+.post-content figure>img {
+  margin-bottom: 0;
+}
