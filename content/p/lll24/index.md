@@ -12,7 +12,7 @@ editPost:
 cover:
     image: "life-long-learners.jpg" # image path/url
     alt: "Lifelong Learners" # alt text
-    caption: "Lifelong Learners" # display caption under cover
+    caption: "\"Wisdom is not a product of schooling but of the lifelong attempt to acquire it.\" (Albert Einstein)" # display caption under cover
     relative: true # when using page bundles set this to true
     hiddenInSingle: false
 ---
