@@ -71,6 +71,8 @@ params:
     buttons:
       - name: 🗜️ Projects
         url: p
+      - name: 📝 Blog
+        url: blog
       - name: 📰 Newsletter
         url: news
 
