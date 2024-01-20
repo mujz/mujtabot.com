@@ -6,7 +6,14 @@
 {{- $title := .Get "title" }}
 {{- $content := .Inner }}
 {{- $footer := .Get "footer" }}
+
+{{/* href Begin */}}
 {{- $href := .Get "href" }}
+{{- if (hasPrefix $href "http" | not)  -}}
+{{- $href = relref . $href }}
+{{- end -}}
+{{/* href End */}}
+
 {{/* Parameters End */}}
 
 <div class="card">

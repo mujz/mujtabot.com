@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-bottom: var(--gap);
@@ -44,12 +45,13 @@
   font-size: 13px;
 }
 
-.card-link {
+.card .card-link {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
+  box-shadow: none;
 }
 
 .card-hint {
