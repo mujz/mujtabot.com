@@ -106,7 +106,7 @@ same experience:
   moment, please choose this tier.
 * 🚲 M: 20,000IQD if you are financially stable and don't have to think too much
   about whether you can afford this event, please choose this tier.
-* 🏎️ L: 30,000IQD if you are financially flourishing, you have the opportunity to
+* 🏎️ L: 25,000IQD if you are financially flourishing, you have the opportunity to
   contribute to our scholarship fund and enable people with fewer resources to also
   attend.
 
@@ -115,7 +115,7 @@ most to us, not the price.
 
 {{<callout>}}
 The prices above are for in-person participation tickets. Online tickets cost
-5,000IQD less. That is, online tickets cost 10, 15, and 25 thousand IQD respectively.
+5,000IQD less. That is, online tickets cost 10, 15, and 20 thousand IQD respectively.
 {{</callout>}}
 
 ### Financial Transparency
