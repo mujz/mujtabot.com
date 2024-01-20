@@ -69,6 +69,8 @@ params:
     imageHeight: 350
     imageTitle: Muj on SUP
     buttons:
+      - name: 🙋 Who's Muj?
+        url: about
       - name: 🗜️ Projects
         url: p
       - name: 📝 Blog
