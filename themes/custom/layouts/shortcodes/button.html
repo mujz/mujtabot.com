@@ -1,7 +1,8 @@
 {{/* Parameters Begin */}}
 {{- $href := .Get "href" }}
+{{- $size := .Get "size" }}
 {{/* Parameters End */}}
 
-<a class="btn" href="{{$href}}">
+<a class="btn {{ $size }}" href="{{$href}}">
   {{ .Inner | markdownify }}
 </a>
