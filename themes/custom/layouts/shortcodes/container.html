@@ -1,3 +1,13 @@
-<div style="text-align: {{ .Get "align" }};">
+{{- $style := "" }}
+
+{{- with (.Get "align") -}}
+{{- $style = printf "%s text-align: %s;" $style . }}
+{{- end -}}
+
+{{- if (.Get "rtl") -}}
+{{- $style = printf "%s direction: rtl;" $style }}
+{{- end -}}
+
+<div style="{{ $style | safeCSS }}">
   {{ .Inner | markdownify }}
 </div>
