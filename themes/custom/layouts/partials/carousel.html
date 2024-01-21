@@ -1,6 +1,5 @@
-/* The carousel component comes from:
- * https://hugocodex.org/add-ons/slider-carousel
- */
+<!-- The carousel component comes from: -->
+<!-- https://hugocodex.org/add-ons/slider-carousel -->
 {{ if in .RawContent "{{<carousel" }}
   <script type="text/javascript" src="{{ (resources.Get "js/carousel.js" | fingerprint).RelPermalink }}" defer></script>
 {{ end }}
