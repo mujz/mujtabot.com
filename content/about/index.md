@@ -51,10 +51,6 @@ values and beliefs that uplift me, and the actions I take.
 
 ### What Drives Me
 
-I believe that I was put on this earth to help reduce human suffering (yup, that's
-why people call me weird). I'm not alone in this. Call me crazy, but I like to follow
-in the footsteps of the prophet Mohammed, Jesus, The Buddha, et al.
-
 Daniel Kahnemen, the psychologist and author of the infamous book "_Thinking, Fast
 and Slow_" said [in a podcast](https://link.chtbl.com/6WRdstfN):
 
