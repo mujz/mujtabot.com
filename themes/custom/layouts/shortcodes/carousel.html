@@ -1,0 +1,37 @@
+<!-- The carousel component comes from: -->
+<!-- https://hugocodex.org/add-ons/slider-carousel -->
+{{ .Scratch.Set "height" (.Get "height") }}
+{{ .Scratch.Set "unit" (.Get "unit") }}
+{{ .Scratch.Set "ordinal" .Ordinal }}
+{{ .Scratch.Set "items" (.Get "items") }}
+
+{{ $carousel := .Page.Resources.GetMatch (.Get "imagesSrc") | transform.Unmarshal }}
+
+<div id="carousel{{ .Ordinal }}" class="carousel" duration="{{ .Get `duration` }}">
+    <ul>
+      {{ range $index, $slide := $carousel.images }}
+        <li id="c{{ $.Scratch.Get "ordinal" }}_slide{{ add $index 1}}" style="min-width: calc(100%/{{ $.Scratch.Get "items" }}); padding-bottom: {{ $.Scratch.Get "height" }}{{ $.Scratch.Get "unit" }};"><img src="{{ $slide.image }}" alt="" /><div><div>{{ $slide.content_html }}</div></div></li>
+      {{ end }}
+    </ul>
+    <ol>
+      {{ range $index, $page := $carousel.images }}
+        <li><a href="#c{{ $.Scratch.Get "ordinal" }}_slide{{ add $index 1 }}"></a></li>
+      {{ end }}
+    </ol>
+    <div class="prev">
+      <div class="arrow-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor" transform="rotate(270) translate(0, -2)">
+          <path d="M12 6H0l6-6z"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="next">
+      <div class="arrow-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6"
+          fill="currentcolor" transform="rotate(90) translate(0, -2)">
+          <path d="M12 6H0l6-6z"></path>
+        </svg>
+      </div>
+    </div>
+</div>
+
