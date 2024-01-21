@@ -1,7 +1,6 @@
 ---
 title: "Jan 21"
 date: 2024-01-21T09:15:00+03:00
-draft: true
 cover:
     image: "dolma.jpg" # image path/url
     alt: "Having dolma on the rooftop with friends" # alt text
