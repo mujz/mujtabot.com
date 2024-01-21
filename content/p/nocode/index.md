@@ -2,7 +2,9 @@
 title: "How to Build Websites & Apps without Code with Mustafa Alwan"
 date: 2024-01-15T13:30:00+03:00
 description: |
-    TODO
+    Learn from the founder of Kawanter, an app built with no-code tools and has
+    hundreds of thousands of users, how to build your app without writing a single
+    line of code.
 hideDescriptionInSingle: true
 ShowReadingTime: false
 editPost:
