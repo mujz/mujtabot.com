@@ -8,9 +8,9 @@ ShowReadingTime: false
 editPost:
     disabled: true
 cover:
-    image: "switzerland.jpg" # image path/url
-    alt: "Mujtaba dancing with beautiful mountains in the background" # alt text
-    caption: "I'll take every chance I get to dance" # display caption under cover
+    image: "mont-blanc.jpg" # image path/url
+    alt: "Mujtaba sitting on a mountain callde Mount Blanc" # alt text
+    caption: "Wanna go hiking together some time?" # display caption under cover
     relative: true # when using page bundles set this to true
     hiddenInSingle: false
 comments: false
@@ -33,6 +33,11 @@ If you'd like to do stuff together, I'm always happy working with passionate and
 skilled people on projects relating to **education**, **tech**, **community
 building**, and **event facilitation**. Or you can join me in one of my
 [active projects]({{<relref "/p">}}).
+
+{{<callout>}}
+Whether you're an old friend or just getting to know me, feel free to
+[message me](https://t.me/mujzuh). I will be honored to connect with you.
+{{</callout>}}
 
 ## LONG-WINDED VERSION
 
