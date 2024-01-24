@@ -20,7 +20,7 @@ him how he built his mobile app—an app used by hundreds of thousands of travel
 told me that he uses [FlutterFlow.io](https://flutterflow.io).
 
 Even more, Mustafa taught his friend to use FlutterFlow, who then rebuilt their
-company's entire app and saved the company $60k in dev costs.
+company's entire app and saved the company $60k in dev costs. Mustafa told me:
 
 {{<container rtl=true >}}
 > FlutterFlow شگاگي.
@@ -30,21 +30,13 @@ company's entire app and saved the company $60k in dev costs.
 > اني التطبيق مالتي كله مبني بي. وكل هذا ببلاش.
 {{</container>}}
 
-I got into this call with Mustafa in the first place because as I was driving back
-from Baghdad airport, I thought wouldn't it be great if I could pick a traveler up
-with me and share the costs? I want to build a functional proof of concept carpooling
-app, like the widely adopted BlaBlaCar in Europe, in a day or two. That got me to
-think of Mustafa immediately because he's the guy who builds apps like that in crazy
-short time and onboards thousands of customers in a matter of weeks. I want to learn
-from him.
-
 {{<figure
   src="kawanter.jpg"
   alt="Kawanter on the App Store"
   caption="Kawanter on the App Store"
 >}}
 
-If this resonates with you, join me in learning from Mustafa by reading on.
+If this sounds interesting to you, join us in learning from Mustafa by reading on.
 
 ## Event details
 
@@ -61,19 +53,14 @@ You can join:
 
 ### Agenda
 
-We'll be punctual by starting on time, but after that we'll decide how to use the
-time based on what feels right. Therefore, make sure you arrive on time and keep your
-expectations flexible with the duration of each component of the agenda.
-
 - **45mins: Mujtaba interviews Mustafa**
 
   Mustafa will share his screen and show us how he uses tools, such as Airtable and
-  FlutterFlow, in building mobile apps and websites used by hundreds of thousands of
-  people.
-
-  This will be an interactive session and the participants will get to raise questions to Mustafa directly.
+  FlutterFlow, in building his mobile app.
 - **10mins: Break**
 - **45mins: Interview continues**
+
+  This will be an interactive session and the participants will get to raise questions to Mustafa directly.
 - **45mins: Lunch**
 
   This will be a great opportunity to digest the new learnings (pun intended), by discussing them with other participants over a meal.
@@ -102,7 +89,7 @@ preparation before registering:
 It is our goal to make this event as accessible as possible while also covering
 expenses. So we have made the following “small, medium and large” price tiers
 available. Regardless of which price tier you choose, you get the
-same experience:
+same experience (including lunch):
 
 * 🛹 S: 15,000IQD - if it's a stretch for you to be investing in this event at the
   moment, please choose this tier.
