@@ -3,6 +3,8 @@
 {{- $size := .Get "size" }}
 {{/* Parameters End */}}
 
-<a class="btn {{ $size }}" href="{{$href}}">
-  {{ .Inner | markdownify }}
-</a>
+<p>
+  <a class="btn {{ $size }}" href="{{$href}}">
+    {{ .Inner | markdownify }}
+  </a>
+</p>
