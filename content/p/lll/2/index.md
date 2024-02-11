@@ -3,7 +3,6 @@ title: "Feb 7 - The 4 Things It Takes to Be an Expert"
 date: 2024-02-10T10:30:00+03:00
 aliases:
 - /lll/2
-layout: "single"
 ---
 {{<button href="/safe/p/lll/2/recording" >}}
 Watch Recording

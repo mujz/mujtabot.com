@@ -3,12 +3,6 @@ title: "Jan 31 - Orientation"
 date: 2024-02-10T10:30:00+03:00
 aliases:
 - /lll/1
-cover:
-    image: ""
-    alt: ""
-    caption: ""
-    relative: true
-    hiddenInSingle: false
 ---
 {{<button href="/safe/p/lll/1/recording" >}}
 Watch Recording
