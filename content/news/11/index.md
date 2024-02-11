@@ -64,7 +64,7 @@ knowledge, and launching new projects.
 
 ### @Me
 
-- The [Lifelong Learners Club]({{<relref "/p/lll24">}}) is now open! Join us if it
+- The [Lifelong Learners Club]({{<relref "/p/lll">}}) is now open! Join us if it
   seems interesting to you!
 
   {{<instagram "https://www.instagram.com/p/C2NRujyKxCZ">}}

@@ -1,6 +1,10 @@
 ---
 title: "Lifelong Learners club (2024)"
 date: 2024-01-15T13:30:00+03:00
+aliases:
+- /lll
+- lll24
+layout: "lll-list"
 description: |
     Are you eager to join a vibrant community of lifelong learners? Every week, we
     come together to transform knowledge into powerful insights, expanding our
@@ -9,6 +13,7 @@ hideDescriptionInSingle: true
 ShowReadingTime: false
 editPost:
     disabled: true
+SubpagesTitle: "Meetings"
 cover:
     image: "life-long-learners.jpg" # image path/url
     alt: "Lifelong Learners" # alt text
@@ -162,3 +167,9 @@ etc.
 [**☞ I have questions**](https://airtable.com/app56QA8mzol7siJU/shrdQRYEKwWqwHYBv)
 
 **[☞ Maybe next time](https://airtable.com/app56QA8mzol7siJU/shrdQRYEKwWqwHYBv?prefill_Are%20you%20joining%3F=No&hide_Are%20you%20joining%3F=true)**
+
+---
+
+## Meetings
+
+1. [Jan 31 • Orientation]({{<relref "/p/lll/1">}})

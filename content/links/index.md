@@ -15,7 +15,7 @@ hideFooter: true
 تعلم تسوي تطبيقات بدون برمجة
 {{</button>}}
 
-{{<button href="/p/lll24">}}
+{{<button href="/p/lll">}}
 Lifelong Learners Club
 {{</button>}}
 {{</container>}}

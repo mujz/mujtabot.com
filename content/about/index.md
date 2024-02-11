@@ -76,7 +76,7 @@ judgment, etc.).
 
 Some of the tangible examples of my attempts to do this include:
 {{<cardGallery align="center">}}
-{{<card title="Lifelong Learner's Club" img="lll.jpg" footer="**Currently active, join us!**" href="/p/lll24" >}}
+{{<card title="Lifelong Learner's Club" img="lll.jpg" footer="**Currently active, join us!**" href="/p/lll" >}}
 Hosting a community of learners.
 {{</card>}}
 {{<card title="Clean Iraq (سفراء النظافة)" img="clean-iraq.jpg" footer="**Currently active, join us!**" href="https://www.instagram.com/clean.iraq/" >}}
@@ -99,12 +99,12 @@ Bringing young Iraqis to live for 6-months with Mina (my wife) and I in Istanbul
 ### Work Experience as a Software Engineer
 
 {{<cardGallery align="center">}}
-{{<card title="Bloom" img="bloom.jpg" footer="🇱🇧 Lebanon: Remote" href=https://bloom.pm"" >}}
+{{<card title="Bloom" img="bloom.jpg" footer="🇱🇧 Lebanon: Remote" href="https://bloom.pm" >}}
 **CTO**
 
 We built a project management web app for training programs
 {{</card>}}
-{{<card title="Re:Coded" img="re-coded.jpg" footer="🇹🇷 Turkey" href=https://re-coded.com"" >}}
+{{<card title="Re:Coded" img="re-coded.jpg" footer="🇹🇷 Turkey" href="https://re-coded.com" >}}
 **Lead Trainer**
 
 We taught web development bootcamps
