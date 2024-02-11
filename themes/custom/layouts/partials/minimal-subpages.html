@@ -1,0 +1,18 @@
+<div class="minimal-subpages">
+    <details {{if (.Param "SubpagesOpen") }} open{{ end }}>
+        <summary accesskey="m" title="(Ctrl + M)">
+            <span class="details">{{ .Param "SubpagesTitle" | default "Pages" }}</span>
+        </summary>
+
+        <div class="inner">
+            <ol reversed>
+                {{- $pages := union .RegularPages .Sections }}
+                {{- range $pages -}}
+                    <li>
+                        <a href="{{ .Permalink }}">{{ .Title }}</a>
+                    </li>
+                {{- end }}
+            </ol>
+        </div>
+    </details>
+</div>

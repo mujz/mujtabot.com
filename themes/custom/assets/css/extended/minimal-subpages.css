@@ -1,0 +1,46 @@
+/* A component that looks like TOC but for subpages */
+.post-single .minimal-subpages .inner {
+    margin: 5px;
+    padding: 0;
+}
+
+.minimal-subpages a:hover {
+    box-shadow: 0 1px 0;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+.minimal-subpages {
+    margin: 0 2px 40px 2px;
+    border: 1px solid var(--border);
+    background: var(--code-bg);
+    border-radius: var(--radius);
+    padding: 0.4em;
+}
+
+.dark .minimal-subpages {
+    background: var(--entry);
+}
+
+.minimal-subpages details summary {
+    cursor: pointer;
+    margin-inline-start: 20px;
+}
+
+.minimal-subpages .details {
+    display: inline;
+    font-weight: 500;
+}
+
+.minimal-subpages .inner {
+    margin: 0 20px;
+    padding: 10px 20px;
+}
+
+.minimal-subpages li ol {
+    margin-inline-start: var(--gap);
+}
+
+.minimal-subpages summary:focus {
+    outline: 0;
+}
