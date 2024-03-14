@@ -5,6 +5,7 @@ ShowBreadCrumbs: false
 hideMeta: true
 comments: false
 hideFooter: true
+draft: true
 markup:
   goldmark:
     renderer:
