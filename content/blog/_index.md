@@ -4,8 +4,6 @@ date: 2024-01-18T22:55:00+03:00
 hideMeta: true
 comments: false
 ---
-Coming soon.
-
 If you'd like me to contact you when I post new content, click the button below 👇
 
 {{<container align="center">}}
@@ -13,3 +11,5 @@ If you'd like me to contact you when I post new content, click the button below 
 Subscribe
 {{</button>}}
 {{</container>}}
+
+---
