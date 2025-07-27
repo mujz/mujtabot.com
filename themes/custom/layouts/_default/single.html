@@ -2,6 +2,7 @@
 <!-- Everything below is copied verbatim from PaperMod theme on Jan 8, 2024 -->
 
 <article class="post-single">
+  {{- if not (.Param "hidePostHeader") }}
   <header class="post-header">
     {{ partial "breadcrumbs.html" . }}
     <h1 class="post-title entry-hint-parent">
@@ -29,6 +30,7 @@
     </div>
     {{- end }}
   </header>
+  {{- end }}
   {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
   {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
   {{- if (.Param "ShowToc") }}
@@ -43,6 +45,7 @@
   </div>
   {{- end }}
 
+  {{- if not (.Param "hideFooter") }}
   <footer class="post-footer">
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
     <ul class="post-tags">
@@ -57,6 +60,7 @@
     {{- partial "share_icons.html" . -}}
     {{- end }}
   </footer>
+  {{- end }}
 
   {{- if (.Param "comments") }}
   {{- partial "comments.html" . }}

@@ -1,0 +1,46 @@
+{{/* Parameters Begin */}}
+{{- $title := .Get "title" | default "انسخ النص" }}
+{{- $successText := .Get "successText" | default "✅ تم نسخ النص" }}
+{{- $size := .Get "size" }}
+
+{{/* Parameters End */}}
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-top: 40px;
+}
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.copied {
+  color: green;
+  margin-top: 10px;
+  display: none;
+}
+</style>
+
+<p>
+  <button class="btn {{ $size }}" onclick="copyText()">
+    {{ $title }}
+  </button>
+</p>
+
+<div id="copiedMessage" class="copied">{{ $successText }}</div>
+
+<script>
+function copyText() {
+  const blob = new Blob(["{{ .Inner | markdownify }}"], { type: "text/html" });
+  const data = [new ClipboardItem({ "text/html": blob })];
+  navigator.clipboard.write(data)
+    .then(() => {
+      const msg = document.getElementById("copiedMessage");
+      msg.style.display = "block";
+    })
+    .catch(err => {
+      alert("حصل خطأ في نسخ النص. يرجى تحديد النص ونسخه.");
+    });
+}
+</script>

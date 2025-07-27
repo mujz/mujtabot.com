@@ -39,6 +39,7 @@
 </script>
 {{- end }}
 
+{{- if (not (.Param "hideSiteHeader")) -}}
 <header class="header">
   {{- if (not (.Param "hideSiteNav")) -}}
     <nav class="nav">
@@ -170,4 +171,5 @@
     </button>
   {{- end -}}
 </header>
+{{- end }}
 
