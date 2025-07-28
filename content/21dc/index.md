@@ -37,13 +37,13 @@ comments: false
 
 ### شلون تشارك بالتحدي؟
 * اختار مهارة او عادة (مثلاً القراءة)
-* لمدة 21 يوم مارسها يومياً (حتى لو بس ١٥ دقيقة باليوم)
+* لمدة 21 يوم مارسها يومياً (حتى لو بس 15 دقيقة باليوم)
 * شارك تقدمك بمنشور كل يوم سبت
 * ادخل وسجل معلوماتك [يم تحسين](https://t.me/days29bot)
 
 ### منو هو تحسين؟
 تحسين هو [بوت بالتلكرام](https://t.me/days29bot) حيكون صديقك خلال الـ21 يوم، يومية يسال عليك ويشوف وين وصلت وهو يسجل تقدمك.
- 
+
 <div style="padding:177.78% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/712139551?h=8e698455fe&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="المشاركين بتحدي ٢٩ يوم - ٢٠٢٢"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 <br>
