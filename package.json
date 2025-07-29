@@ -1,0 +1,17 @@
+{
+  "name": "mujtabot-com",
+  "version": "1.0.0",
+  "description": "Mujtabot personal website with Cloudflare Functions",
+  "main": "index.js",
+  "scripts": {
+    "dev": "wrangler pages dev public --compatibility-date=2024-01-01",
+    "deploy": "wrangler pages deploy public"
+  },
+  "devDependencies": {
+    "wrangler": "^4.26.1"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.855.0",
+    "@aws-sdk/s3-request-presigner": "^3.855.0"
+  }
+}

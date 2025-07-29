@@ -12,6 +12,11 @@ preview_bucket_name = "29dc"
 
 [env.production.vars]
 R2_PUBLIC_URL = "https://files.mujtabot.com"
+R2_BUCKET_NAME = "29dc"
+# R2 API credentials for presigned URLs - set these as secrets
+# R2_ACCESS_KEY_ID = ""
+# R2_SECRET_ACCESS_KEY = ""
+# R2_ACCOUNT_ID = ""
 
 [env.preview]
 name = "mujtabot-com-preview"
@@ -21,4 +26,9 @@ binding = "R2_BUCKET"
 bucket_name = "29dc"
 
 [env.preview.vars]
-R2_PUBLIC_URL = "https://files.mujtabot.com" 
+R2_PUBLIC_URL = "https://files.mujtabot.com"
+R2_BUCKET_NAME = "29dc"
+# R2 API credentials for presigned URLs - set these as secrets
+# R2_ACCESS_KEY_ID = ""
+# R2_SECRET_ACCESS_KEY = ""
+# R2_ACCOUNT_ID = "" 

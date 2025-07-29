@@ -1,0 +1,690 @@
+{{/* Parameters Begin */}}
+{{- $containerId := .Get "id" | default (anchorize .Page.Title) }}
+{{- $title := .Get "title" | default "انسخ النص المكتمل" }}
+{{- $successText := .Get "successText" | default "✅ تم نسخ النص" }}
+{{- $size := .Get "size" }}
+
+{{/* Parameters End */}}
+
+<!-- Uppy.io Dependencies -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/uppy/4.18.0/uppy.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uppy/4.18.0/uppy.min.js"></script>
+<script src="https://releases.transloadit.com/uppy/locales/v3.3.1/ar_SA.min.js"> </script>
+
+
+<style>
+.fillable-text-container {
+  font-family: Arial, sans-serif;
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.fillable-text-content {
+  line-height: 1.6;
+  margin: 20px 0;
+  white-space: pre-wrap;
+}
+
+.fillable-blank {
+  display: inline-block;
+  min-width: 120px;
+  max-width: 400px;
+  width: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin: 0 4px;
+  background-color: white;
+  font-family: inherit;
+  font-size: inherit;
+  box-sizing: border-box;
+  transition: width 0.2s ease;
+}
+
+.fillable-blank:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.fillable-blank.expanding {
+  width: auto;
+}
+
+.fillable-textarea-blank {
+  display: block;
+  width: 100%;
+  min-height: 60px;
+  max-height: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: 8px 0;
+  background-color: white;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.4;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: height 0.2s ease;
+  min-height: 70px;
+}
+
+.fillable-textarea-blank:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.copy-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin: 5px;
+}
+
+.copy-button:hover {
+  background-color: #0056b3;
+}
+
+.copied-message {
+  color: green;
+  margin-top: 10px;
+  display: none;
+  font-weight: bold;
+}
+
+.placeholder-text {
+  color: #999;
+  font-style: italic;
+}
+
+.copy-buttons-container {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.fillable-image-blank {
+  display: block;
+  margin: 20px 0;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  background-color: #fafafa;
+  transition: border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 150px;
+}
+
+.fillable-image-blank.has-image {
+  border-style: solid;
+  border-color: #007bff;
+  min-height: auto;
+}
+
+.fillable-image-blank.drag-over {
+  border-color: #007bff;
+  background-color: #f0f8ff;
+}
+
+.image-upload-container {
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.image-placeholder-text {
+  color: #666;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 10px;
+  pointer-events: none;
+}
+
+.image-upload-hint {
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5px;
+  pointer-events: none;
+}
+
+.uploaded-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.image-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.fillable-image-blank:hover .image-controls {
+  opacity: 1;
+}
+
+.image-control-btn {
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.image-control-btn:hover {
+  background: rgba(0,0,0,0.9);
+}
+
+.uppy-container {
+  width: 100%;
+}
+
+.uppy-Dashboard {
+  min-height: 150px !important;
+}
+
+.uppy-Dashboard-inner {
+  min-height: 150px !important;
+  height: auto !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.uppy-Dashboard-dropFilesHereHint {
+  font-size: 16px !important;
+  color: #666 !important;
+}
+
+.image-url-input {
+  display: none;
+}
+</style>
+
+<div class="fillable-text-container" id="fillableContainer">
+  <div class="copy-buttons-container">
+    <button class="copy-button {{ $size }}" onclick="copyFilledText('top')">
+      {{ $title }}
+    </button>
+  </div>
+  
+  <div class="fillable-text-content" id="fillableContent">
+    {{ .Inner | markdownify | safeHTML }}
+  </div>
+  
+  <div class="copy-buttons-container">
+    <button class="copy-button {{ $size }}" onclick="copyFilledText('bottom')">
+      {{ $title }}
+    </button>
+  </div>
+  
+  <div id="copiedMessage" class="copied-message">{{ $successText }}</div>
+</div>
+
+<script>
+// Generate a unique ID for this fillable text instance
+const containerId = 'fillableText_{{ $containerId }}';
+document.getElementById('fillableContainer').setAttribute('data-container-id', containerId);
+const now = Date.now();
+
+// Debounce function
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Save to localStorage with debounce
+const saveToLocalStorage = debounce(function(containerId, values) {
+  try {
+    localStorage.setItem(`fillableText_${containerId}`, JSON.stringify(values));
+  } catch (e) {
+    console.warn('Could not save to localStorage:', e);
+  }
+}, 500);
+
+// Load from localStorage
+function loadFromLocalStorage(containerId) {
+  try {
+    const saved = localStorage.getItem(`fillableText_${containerId}`);
+    return saved ? JSON.parse(saved) : {};
+  } catch (e) {
+    console.warn('Could not load from localStorage:', e);
+    return {};
+  }
+}
+
+// Auto-resize input function
+function autoResizeInput(input) {
+  // Create a temporary span to measure text width
+  const tempSpan = document.createElement('span');
+  tempSpan.style.visibility = 'hidden';
+  tempSpan.style.position = 'absolute';
+  tempSpan.style.whiteSpace = 'pre';
+  tempSpan.style.font = window.getComputedStyle(input).font;
+  tempSpan.style.padding = window.getComputedStyle(input).padding;
+  tempSpan.style.border = window.getComputedStyle(input).border;
+  tempSpan.style.boxSizing = 'border-box';
+  
+  // Set the text content
+  const text = input.value || input.placeholder;
+  tempSpan.textContent = text;
+  
+  // Add to DOM temporarily to measure
+  document.body.appendChild(tempSpan);
+  
+  // Calculate width with some padding
+  const textWidth = tempSpan.offsetWidth + 20; // Add 20px for extra padding
+  
+  // Remove temporary span
+  document.body.removeChild(tempSpan);
+  
+  // Set input width (with min/max constraints)
+  const minWidth = 120;
+  const maxWidth = 400;
+  const newWidth = Math.max(minWidth, Math.min(maxWidth, textWidth));
+  
+  input.style.width = newWidth + 'px';
+}
+
+// Auto-resize textarea function
+function autoResizeTextarea(textarea) {
+  // Reset height to auto to get the correct scrollHeight
+  textarea.style.height = 'auto';
+  
+  // Calculate new height based on content
+  const minHeight = 60;
+  const maxHeight = 300;
+  const newHeight = Math.max(minHeight, Math.min(maxHeight, textarea.scrollHeight));
+  
+  // Set the new height
+  textarea.style.height = newHeight + 'px';
+}
+
+// Process the content to replace __BLANK__:placeholder with input fields
+document.addEventListener('DOMContentLoaded', function() {
+  const content = document.getElementById('fillableContent');
+  const text = content.innerHTML;
+  
+  // Debug: Log the original text to see what we're working with
+  console.log('Original text:', text);
+  
+  // Load saved values
+  const savedValues = loadFromLocalStorage(containerId);
+  
+  // Replace __BLANK__:placeholder patterns with input fields
+  // Updated regex to be more robust and handle various edge cases
+  
+  let processedText = text
+    .replace(/<code>__BLANK__:([^:]*):?(.*?)<\/code>/g, function(match, id, placeholder) {
+      console.log('Found match:', match, 'with placeholder:', placeholder);
+      const savedValue = savedValues[id] || '';
+      return `<input type="text" class="fillable-blank" id="${id}" placeholder="${placeholder.trim()}" data-original="${match}" value="${savedValue}">`;
+    })
+    .replace(/<code>__TEXTAREA_BLANK__:([^:]*):?(.*?)<\/code>/g, function(match, id, placeholder) {
+      console.log('Found match:', match, 'with placeholder:', placeholder);
+      const savedValue = savedValues[id] || '';
+      return `<textarea class="fillable-textarea-blank" id="${id}" placeholder="${placeholder.trim()}" data-original="${match}" value="${savedValue}"></textarea>`;
+    })
+    .replace(/<code>__IMAGE_BLANK__:([^:]*):?(.*?)<\/code>/g, function(match, id, placeholder) {
+      console.log('Found image match:', match, 'with placeholder:', placeholder);
+      const savedValue = savedValues[id] || '';
+      return `<div class="fillable-image-blank" id="${id}" data-placeholder="${placeholder.trim()}" data-original="${match}">
+        <input type="hidden" class="image-url-input" value="${savedValue}">
+        <div class="image-upload-container">
+          ${savedValue ? `<img src="${savedValue}" alt="Uploaded Image" class="uploaded-image">
+          <div class="image-controls">
+            <button class="image-control-btn" onclick="removeImage('${id}')">Remove</button>
+          </div>` : ``}
+          <div class="uppy-container" id="uppy-${id}"></div>
+        </div>
+      </div>`;
+    });
+  
+  content.innerHTML = processedText;
+  
+  // Add event listeners to all input fields, textareas, and image blanks
+  const inputs = content.querySelectorAll('.fillable-blank');
+  const textareas = content.querySelectorAll('.fillable-textarea-blank');
+  const imageBlanks = content.querySelectorAll('.fillable-image-blank');
+  
+  // Handle input fields
+  inputs.forEach(input => {
+    // Auto-expand functionality
+    input.addEventListener('input', function() {
+      // Auto-resize the input
+      autoResizeInput(this);
+      
+      // Save to localStorage
+      saveAllValues();
+    });
+    
+    // Initial resize
+    autoResizeInput(input);
+  });
+  
+  // Handle textareas
+  textareas.forEach(textarea => {
+    // Auto-expand functionality
+    textarea.value = savedValues[textarea.id] || '';
+    textarea.addEventListener('input', function() {
+      // Auto-resize the textarea
+      autoResizeTextarea(this);
+      
+      // Save to localStorage
+      saveAllValues();
+    });
+    
+    // Initial resize
+    autoResizeTextarea(textarea);
+  });
+  
+  // Handle image blanks with Uppy
+  imageBlanks.forEach(imageBlank => {
+    const imageId = imageBlank.id;
+    const placeholder = imageBlank.dataset.placeholder;
+    const uppyContainer = imageBlank.querySelector(`#uppy-${imageId}`);
+    const urlInput = imageBlank.querySelector('.image-url-input');
+    
+    initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInput);
+  });
+  
+  // Function to save all values (inputs, textareas, images)
+  function saveAllValues() {
+    const values = {};
+    
+    // Save input values
+    inputs.forEach(inp => {
+      values[inp.id] = inp.value;
+    });
+    
+    // Save textarea values
+    textareas.forEach(textarea => {
+      values[textarea.id] = textarea.value;
+    });
+    
+    // Save image URLs
+    imageBlanks.forEach(imageBlank => {
+      const urlInput = imageBlank.querySelector('.image-url-input');
+      values[imageBlank.id] = urlInput.value;
+    });
+    
+    saveToLocalStorage(containerId, values);
+  }
+});
+
+// Helper function to update image display
+function updateImageDisplay(imageId, fileUrl) {
+  const imageBlank = document.getElementById(imageId);
+  const urlInput = imageBlank.querySelector('.image-url-input');
+  const uploadContainer = imageBlank.querySelector('.image-upload-container');
+  const uppyContainer = imageBlank.querySelector(`#uppy-${imageId}`);
+  
+  // Update hidden input value
+  urlInput.value = fileUrl;
+  
+  // Update display
+  uploadContainer.innerHTML = `
+    <img src="${fileUrl}" alt="Uploaded Image" class="uploaded-image">
+    <div class="image-controls">
+      <button class="image-control-btn" onclick="removeImage('${imageId}')">Remove</button>
+    </div>
+    <div class="uppy-container" id="uppy-${imageId}" style="display: none;"></div>
+  `;
+  
+  // Add has-image class
+  imageBlank.classList.add('has-image');
+}
+
+// Function to remove an image
+function removeImage(imageId) {
+  const imageBlank = document.getElementById(imageId);
+  const urlInput = imageBlank.querySelector('.image-url-input');
+  const uploadContainer = imageBlank.querySelector('.image-upload-container');
+  const placeholder = imageBlank.dataset.placeholder;
+  
+  // Clear the URL
+  urlInput.value = '';
+  
+  // Reset display to placeholder
+  uploadContainer.innerHTML = `
+    <div class="uppy-container" id="uppy-${imageId}"></div>
+  `;
+  
+  // Remove has-image class
+  imageBlank.classList.remove('has-image');
+  
+  // Reinitialize Uppy for this container
+  // Note: This is a simplified reinitialization - in production you might want to reuse the same Uppy instance
+  const uppyContainer = imageBlank.querySelector(`#uppy-${imageId}`);
+  initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInput);
+  
+  // Save changes
+  const containerId = 'fillableText_{{ $containerId }}';
+  const content = document.getElementById('fillableContent');
+  const inputs = content.querySelectorAll('.fillable-blank');
+  const textareas = content.querySelectorAll('.fillable-textarea-blank');
+  const imageBlanks = content.querySelectorAll('.fillable-image-blank');
+  
+  const values = {};
+  inputs.forEach(inp => { values[inp.id] = inp.value; });
+  textareas.forEach(textarea => { values[textarea.id] = textarea.value; });
+  imageBlanks.forEach(imgBlank => {
+    const urlInp = imgBlank.querySelector('.image-url-input');
+    values[imgBlank.id] = urlInp.value;
+  });
+  
+  saveToLocalStorage(containerId, values);
+}
+
+// Helper function to initialize Uppy for a container (used for reinitialization)
+function initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInput) {
+  const uppy = new Uppy.Uppy({
+    locale: Uppy.locales.ar_SA,
+    restrictions: {
+      maxNumberOfFiles: 1,
+      allowedFileTypes: ['image/*'],
+      maxFileSize: 10 * 1024 * 1024, // 10MB
+    },
+    locale: {
+      strings: {
+        dropHereOr: placeholder || 'اسحب وأفلت صورة هنا أو %{browse}',
+        browse: 'تصفح',
+        upload: 'رفع',
+        cancel: 'إلغاء',
+        retry: 'إعادة المحاولة',
+        removeFile: 'إزالة الملف',
+        editFile: 'تحرير الملف',
+      }
+    },
+    autoProceed: false,
+  });
+  
+  uppy.use(Uppy.Dashboard, {
+    target: uppyContainer,
+    inline: true,
+    width: '100%',
+    height: 150,
+    hideUploadButton: false,
+    showProgressDetails: true,
+    proudlyDisplayPoweredByUppy: false,
+    locale: {
+      pluralize: Uppy.locales.ar_SA.pluralize,
+      strings: {
+        ...Uppy.locales.ar_SA.strings,
+        "browse": "اضغط هنا",
+        "browseFiles": "اضغط هنا",
+        "dropHereOr": `%{browse} حتى ${placeholder}`,
+        "dropHint": `%{browse} حتى ${placeholder}`,
+        "dropPasteBoth": `%{browse} حتى ${placeholder}`,
+        "dropPasteFiles": `%{browse} حتى ${placeholder}`,
+        "dropPasteFolders": `%{browse} حتى ${placeholder}`,
+        "dropPasteImportBoth": `%{browse} حتى ${placeholder}`,
+        "dropPasteImportFiles": `%{browse} حتى ${placeholder}`,
+        "dropPasteImportFolders": `%{browse} حتى ${placeholder}`,
+        browse: 'تصفح',
+        upload: 'رفع',
+        cancel: 'إلغاء',
+        retry: 'إعادة المحاولة',
+        removeFile: 'إزالة الملف',
+        editFile: 'تحرير الملف',
+      }
+    },
+  });
+  
+  uppy.use(Uppy.AwsS3, {
+    async getUploadParameters(file) {
+      try {
+        const response = await fetch('http://localhost:8788/api/upload-url', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            fileName: `${now}-${file.name}`,
+            contentType: file.type,
+            expiresIn: 3600
+          })
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const { uploadUrl, publicUrl: key } = await response.json();
+        
+        return {
+          method: 'PUT',
+          url: uploadUrl,
+          fields: {},
+          headers: {
+            'Content-Type': file.type,
+          },
+          // Store key for later use
+          _key: key,
+        };
+      } catch (error) {
+        console.error('Error getting upload parameters:', error);
+        throw error;
+      }
+    },
+  });
+  
+  uppy.on('upload-success', async (file, response) => {
+    try {
+      // Get the key from the upload parameters we stored earlier
+      const fileUrl = `https://files.mujtabot.com/uploads/${now}-${encodeURIComponent(uppy.getState().files[file.id].name)}`;
+
+      if (!fileUrl) {
+        debugger
+        console.error('Could not get uploaded image url from upload parameters');
+        return;
+      }
+      
+      updateImageDisplay(imageId, fileUrl);
+      
+      // Save to localStorage
+      const containerId = 'fillableText_{{ $containerId }}';
+      const content = document.getElementById('fillableContent');
+      const inputs = content.querySelectorAll('.fillable-blank');
+      const textareas = content.querySelectorAll('.fillable-textarea-blank');
+      const imageBlanks = content.querySelectorAll('.fillable-image-blank');
+      
+      const values = {};
+      inputs.forEach(inp => { values[inp.id] = inp.value; });
+      textareas.forEach(textarea => { values[textarea.id] = textarea.value; });
+      imageBlanks.forEach(imgBlank => {
+        const urlInp = imgBlank.querySelector('.image-url-input');
+        values[imgBlank.id] = urlInp.value;
+      });
+      
+      saveToLocalStorage(containerId, values);
+      
+    } catch (error) {
+      console.error('Error processing uploaded file:', error);
+    }
+  });
+  
+  uppy.on('upload-error', (file, error, response) => {
+    console.error('Upload error:', error);
+    alert('حدث خطأ أثناء رفع الصورة. يرجى المحاولة مرة أخرى.');
+  });
+}
+
+function copyFilledText(position) {
+  const content = document.getElementById('fillableContent');
+  const inputs = content.querySelectorAll('.fillable-blank');
+  const textareas = content.querySelectorAll('.fillable-textarea-blank');
+  const imageBlanks = content.querySelectorAll('.fillable-image-blank');
+  
+  // Create a copy of the content
+  let filledText = content.innerHTML;
+  
+  // Replace input fields with their values or placeholders
+  inputs.forEach(input => {
+    const value = input.value.trim() || input.placeholder;
+    const replacement = value ? value : input.placeholder;
+    filledText = filledText.replace(input.outerHTML, replacement);
+  });
+  
+  // Replace textarea fields with their values or placeholders
+  textareas.forEach(textarea => {
+    const value = textarea.value.trim() || textarea.placeholder;
+    const replacement = (value ? value : textarea.placeholder).replace(/\n/g, '<br>');
+    filledText = filledText.replace(textarea.outerHTML, replacement);
+  });
+  
+  // Replace image fields with their values or placeholders
+  imageBlanks.forEach(imageBlank => {
+    const urlInput = imageBlank.querySelector('.image-url-input');
+    const value = urlInput ? urlInput.value : '';
+    const replacement = value ? `<img src="${value}" alt="Uploaded Image" style="max-width: 100%; height: auto;" />` : '[Image Placeholder]';
+    filledText = filledText.replace(imageBlank.outerHTML, replacement);
+  });
+  
+  const blob = new Blob([filledText], { type: "text/html" });
+  const data = [new ClipboardItem({ "text/html": blob })];
+
+  // Copy to clipboard
+  navigator.clipboard.write(data)
+    .then(() => {
+      const msg = document.getElementById("copiedMessage");
+      msg.style.display = "block";
+      
+      // Hide the message after 3 seconds
+      setTimeout(() => {
+        msg.style.display = "none";
+      }, 3000);
+    })
+    .catch(err => {
+      alert("حصل خطأ في نسخ النص. يرجى تحديد النص ونسخه.");
+    });
+}
+</script> 
