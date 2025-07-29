@@ -1,0 +1,23 @@
+name = "mujtabot-com"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "mujtabot-com-production"
+
+[[env.production.r2_buckets]]
+binding = "R2_BUCKET"
+bucket_name = "29dc"
+preview_bucket_name = "29dc"
+
+[env.production.vars]
+R2_PUBLIC_URL = "https://files.mujtabot.com"
+
+[env.preview]
+name = "mujtabot-com-preview"
+
+[[env.preview.r2_buckets]]
+binding = "R2_BUCKET"
+bucket_name = "29dc"
+
+[env.preview.vars]
+R2_PUBLIC_URL = "https://files.mujtabot.com" 
