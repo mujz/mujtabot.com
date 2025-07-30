@@ -174,12 +174,7 @@
   right: 10px;
   display: flex;
   gap: 5px;
-  opacity: 0;
   transition: opacity 0.2s ease;
-}
-
-.fillable-image-blank:hover .image-controls {
-  opacity: 1;
 }
 
 .image-control-btn {
@@ -189,7 +184,7 @@
   border-radius: 4px;
   padding: 5px 8px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 16px;
   transition: background-color 0.2s ease;
 }
 
@@ -361,9 +356,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="image-upload-container">
           ${savedValue ? `<img src="${savedValue}" alt="Uploaded Image" class="uploaded-image">
           <div class="image-controls">
-            <button class="image-control-btn" onclick="removeImage('${id}')">Remove</button>
-          </div>` : ``}
-          <div class="uppy-container" id="uppy-${id}"></div>
+            <button class="image-control-btn" onclick="removeImage('${id}')">اختار غير صورة</button>
+          </div>` : `<div class="uppy-container" id="uppy-${id}"></div>`}
         </div>
       </div>`;
     });
@@ -454,7 +448,7 @@ function updateImageDisplay(imageId, fileUrl) {
   uploadContainer.innerHTML = `
     <img src="${fileUrl}" alt="Uploaded Image" class="uploaded-image">
     <div class="image-controls">
-      <button class="image-control-btn" onclick="removeImage('${imageId}')">Remove</button>
+      <button class="image-control-btn" onclick="removeImage('${imageId}')">اختار غير صورة</button>
     </div>
     <div class="uppy-container" id="uppy-${imageId}" style="display: none;"></div>
   `;
@@ -562,7 +556,7 @@ function initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInpu
   uppy.use(Uppy.AwsS3, {
     async getUploadParameters(file) {
       try {
-        const response = await fetch('http://localhost:8788/api/upload-url', {
+        const response = await fetch('https://mujtabot.com/api/upload-url', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
