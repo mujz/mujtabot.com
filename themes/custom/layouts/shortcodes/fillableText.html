@@ -223,17 +223,17 @@
       {{ $title }}
     </button>
   </div>
-  
+
   <div class="fillable-text-content" id="fillableContent">
     {{ .Inner | markdownify | safeHTML }}
   </div>
-  
+
   <div class="copy-buttons-container">
     <button class="copy-button {{ $size }}" onclick="copyFilledText('bottom')">
       {{ $title }}
     </button>
   </div>
-  
+
   <div id="copiedMessage" class="copied-message">{{ $successText }}</div>
 </div>
 
@@ -287,25 +287,25 @@ function autoResizeInput(input) {
   tempSpan.style.padding = window.getComputedStyle(input).padding;
   tempSpan.style.border = window.getComputedStyle(input).border;
   tempSpan.style.boxSizing = 'border-box';
-  
+
   // Set the text content
   const text = input.value || input.placeholder;
   tempSpan.textContent = text;
-  
+
   // Add to DOM temporarily to measure
   document.body.appendChild(tempSpan);
-  
+
   // Calculate width with some padding
   const textWidth = tempSpan.offsetWidth + 20; // Add 20px for extra padding
-  
+
   // Remove temporary span
   document.body.removeChild(tempSpan);
-  
+
   // Set input width (with min/max constraints)
   const minWidth = 120;
   const maxWidth = 400;
   const newWidth = Math.max(minWidth, Math.min(maxWidth, textWidth));
-  
+
   input.style.width = newWidth + 'px';
 }
 
@@ -313,12 +313,12 @@ function autoResizeInput(input) {
 function autoResizeTextarea(textarea) {
   // Reset height to auto to get the correct scrollHeight
   textarea.style.height = 'auto';
-  
+
   // Calculate new height based on content
   const minHeight = 60;
   const maxHeight = 300;
   const newHeight = Math.max(minHeight, Math.min(maxHeight, textarea.scrollHeight));
-  
+
   // Set the new height
   textarea.style.height = newHeight + 'px';
 }
@@ -327,29 +327,23 @@ function autoResizeTextarea(textarea) {
 document.addEventListener('DOMContentLoaded', function() {
   const content = document.getElementById('fillableContent');
   const text = content.innerHTML;
-  
-  // Debug: Log the original text to see what we're working with
-  console.log('Original text:', text);
-  
+
   // Load saved values
   const savedValues = loadFromLocalStorage(containerId);
-  
+
   // Replace __BLANK__:placeholder patterns with input fields
   // Updated regex to be more robust and handle various edge cases
-  
+
   let processedText = text
     .replace(/<code>__BLANK__:([^:]*):?(.*?)<\/code>/g, function(match, id, placeholder) {
-      console.log('Found match:', match, 'with placeholder:', placeholder);
       const savedValue = savedValues[id] || '';
       return `<input type="text" class="fillable-blank" id="${id}" placeholder="${placeholder.trim()}" data-original="${match}" value="${savedValue}">`;
     })
     .replace(/<code>__TEXTAREA_BLANK__:([^:]*):?(.*?)<\/code>/g, function(match, id, placeholder) {
-      console.log('Found match:', match, 'with placeholder:', placeholder);
       const savedValue = savedValues[id] || '';
-      return `<textarea class="fillable-textarea-blank" id="${id}" placeholder="${placeholder.trim()}" data-original="${match}" value="${savedValue}"></textarea>`;
+      return `<textarea class="fillable-textarea-blank" id="${id}" placeholder="${placeholder.replace(/\\n/g, '\n').trim()}" data-original="${match}" value="${savedValue}"></textarea>`;
     })
     .replace(/<code>__IMAGE_BLANK__:([^:]*):?(.*?)<\/code>/g, function(match, id, placeholder) {
-      console.log('Found image match:', match, 'with placeholder:', placeholder);
       const savedValue = savedValues[id] || '';
       return `<div class="fillable-image-blank" id="${id}" data-placeholder="${placeholder.trim()}" data-original="${match}">
         <input type="hidden" class="image-url-input" value="${savedValue}">
@@ -361,29 +355,29 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>`;
     });
-  
+
   content.innerHTML = processedText;
-  
+
   // Add event listeners to all input fields, textareas, and image blanks
   const inputs = content.querySelectorAll('.fillable-blank');
   const textareas = content.querySelectorAll('.fillable-textarea-blank');
   const imageBlanks = content.querySelectorAll('.fillable-image-blank');
-  
+
   // Handle input fields
   inputs.forEach(input => {
     // Auto-expand functionality
     input.addEventListener('input', function() {
       // Auto-resize the input
       autoResizeInput(this);
-      
+
       // Save to localStorage
       saveAllValues();
     });
-    
+
     // Initial resize
     autoResizeInput(input);
   });
-  
+
   // Handle textareas
   textareas.forEach(textarea => {
     // Auto-expand functionality
@@ -391,45 +385,47 @@ document.addEventListener('DOMContentLoaded', function() {
     textarea.addEventListener('input', function() {
       // Auto-resize the textarea
       autoResizeTextarea(this);
-      
+
       // Save to localStorage
       saveAllValues();
     });
-    
+
     // Initial resize
     autoResizeTextarea(textarea);
   });
-  
+
   // Handle image blanks with Uppy
   imageBlanks.forEach(imageBlank => {
     const imageId = imageBlank.id;
     const placeholder = imageBlank.dataset.placeholder;
     const uppyContainer = imageBlank.querySelector(`#uppy-${imageId}`);
     const urlInput = imageBlank.querySelector('.image-url-input');
-    
-    initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInput);
+
+    if (uppyContainer) {
+      initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInput);
+    }
   });
-  
+
   // Function to save all values (inputs, textareas, images)
   function saveAllValues() {
     const values = {};
-    
+
     // Save input values
     inputs.forEach(inp => {
       values[inp.id] = inp.value;
     });
-    
+
     // Save textarea values
     textareas.forEach(textarea => {
       values[textarea.id] = textarea.value;
     });
-    
+
     // Save image URLs
     imageBlanks.forEach(imageBlank => {
       const urlInput = imageBlank.querySelector('.image-url-input');
       values[imageBlank.id] = urlInput.value;
     });
-    
+
     saveToLocalStorage(containerId, values);
   }
 });
@@ -440,10 +436,10 @@ function updateImageDisplay(imageId, fileUrl) {
   const urlInput = imageBlank.querySelector('.image-url-input');
   const uploadContainer = imageBlank.querySelector('.image-upload-container');
   const uppyContainer = imageBlank.querySelector(`#uppy-${imageId}`);
-  
+
   // Update hidden input value
   urlInput.value = fileUrl;
-  
+
   // Update display
   uploadContainer.innerHTML = `
     <img src="${fileUrl}" alt="Uploaded Image" class="uploaded-image">
@@ -452,7 +448,7 @@ function updateImageDisplay(imageId, fileUrl) {
     </div>
     <div class="uppy-container" id="uppy-${imageId}" style="display: none;"></div>
   `;
-  
+
   // Add has-image class
   imageBlank.classList.add('has-image');
 }
@@ -463,30 +459,30 @@ function removeImage(imageId) {
   const urlInput = imageBlank.querySelector('.image-url-input');
   const uploadContainer = imageBlank.querySelector('.image-upload-container');
   const placeholder = imageBlank.dataset.placeholder;
-  
+
   // Clear the URL
   urlInput.value = '';
-  
+
   // Reset display to placeholder
   uploadContainer.innerHTML = `
     <div class="uppy-container" id="uppy-${imageId}"></div>
   `;
-  
+
   // Remove has-image class
   imageBlank.classList.remove('has-image');
-  
+
   // Reinitialize Uppy for this container
   // Note: This is a simplified reinitialization - in production you might want to reuse the same Uppy instance
   const uppyContainer = imageBlank.querySelector(`#uppy-${imageId}`);
   initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInput);
-  
+
   // Save changes
   const containerId = 'fillableText_{{ $containerId }}';
   const content = document.getElementById('fillableContent');
   const inputs = content.querySelectorAll('.fillable-blank');
   const textareas = content.querySelectorAll('.fillable-textarea-blank');
   const imageBlanks = content.querySelectorAll('.fillable-image-blank');
-  
+
   const values = {};
   inputs.forEach(inp => { values[inp.id] = inp.value; });
   textareas.forEach(textarea => { values[textarea.id] = textarea.value; });
@@ -494,7 +490,7 @@ function removeImage(imageId) {
     const urlInp = imgBlank.querySelector('.image-url-input');
     values[imgBlank.id] = urlInp.value;
   });
-  
+
   saveToLocalStorage(containerId, values);
 }
 
@@ -520,7 +516,7 @@ function initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInpu
     },
     autoProceed: false,
   });
-  
+
   uppy.use(Uppy.Dashboard, {
     target: uppyContainer,
     inline: true,
@@ -552,7 +548,7 @@ function initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInpu
       }
     },
   });
-  
+
   uppy.use(Uppy.AwsS3, {
     async getUploadParameters(file) {
       try {
@@ -567,13 +563,13 @@ function initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInpu
             expiresIn: 3600
           })
         });
-        
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const { uploadUrl, publicUrl: key } = await response.json();
-        
+
         return {
           method: 'PUT',
           url: uploadUrl,
@@ -590,27 +586,26 @@ function initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInpu
       }
     },
   });
-  
+
   uppy.on('upload-success', async (file, response) => {
     try {
       // Get the key from the upload parameters we stored earlier
       const fileUrl = `https://files.mujtabot.com/uploads/${now}-${encodeURIComponent(uppy.getState().files[file.id].name)}`;
 
       if (!fileUrl) {
-        debugger
         console.error('Could not get uploaded image url from upload parameters');
         return;
       }
-      
+
       updateImageDisplay(imageId, fileUrl);
-      
+
       // Save to localStorage
       const containerId = 'fillableText_{{ $containerId }}';
       const content = document.getElementById('fillableContent');
       const inputs = content.querySelectorAll('.fillable-blank');
       const textareas = content.querySelectorAll('.fillable-textarea-blank');
       const imageBlanks = content.querySelectorAll('.fillable-image-blank');
-      
+
       const values = {};
       inputs.forEach(inp => { values[inp.id] = inp.value; });
       textareas.forEach(textarea => { values[textarea.id] = textarea.value; });
@@ -618,14 +613,14 @@ function initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInpu
         const urlInp = imgBlank.querySelector('.image-url-input');
         values[imgBlank.id] = urlInp.value;
       });
-      
+
       saveToLocalStorage(containerId, values);
-      
+
     } catch (error) {
       console.error('Error processing uploaded file:', error);
     }
   });
-  
+
   uppy.on('upload-error', (file, error, response) => {
     console.error('Upload error:', error);
     alert('حدث خطأ أثناء رفع الصورة. يرجى المحاولة مرة أخرى.');
@@ -637,24 +632,24 @@ function copyFilledText(position) {
   const inputs = content.querySelectorAll('.fillable-blank');
   const textareas = content.querySelectorAll('.fillable-textarea-blank');
   const imageBlanks = content.querySelectorAll('.fillable-image-blank');
-  
+
   // Create a copy of the content
   let filledText = content.innerHTML;
-  
+
   // Replace input fields with their values or placeholders
   inputs.forEach(input => {
     const value = input.value.trim() || input.placeholder;
     const replacement = value ? value : input.placeholder;
     filledText = filledText.replace(input.outerHTML, replacement);
   });
-  
+
   // Replace textarea fields with their values or placeholders
   textareas.forEach(textarea => {
     const value = textarea.value.trim() || textarea.placeholder;
     const replacement = (value ? value : textarea.placeholder).replace(/\n/g, '<br>');
     filledText = filledText.replace(textarea.outerHTML, replacement);
   });
-  
+
   // Replace image fields with their values or placeholders
   imageBlanks.forEach(imageBlank => {
     const urlInput = imageBlank.querySelector('.image-url-input');
@@ -662,7 +657,7 @@ function copyFilledText(position) {
     const replacement = value ? `<img src="${value}" alt="Uploaded Image" style="max-width: 100%; height: auto;" />` : '[Image Placeholder]';
     filledText = filledText.replace(imageBlank.outerHTML, replacement);
   });
-  
+
   const blob = new Blob([filledText], { type: "text/html" });
   const data = [new ClipboardItem({ "text/html": blob })];
 
@@ -671,7 +666,7 @@ function copyFilledText(position) {
     .then(() => {
       const msg = document.getElementById("copiedMessage");
       msg.style.display = "block";
-      
+
       // Hide the message after 3 seconds
       setTimeout(() => {
         msg.style.display = "none";
@@ -681,4 +676,4 @@ function copyFilledText(position) {
       alert("حصل خطأ في نسخ النص. يرجى تحديد النص ونسخه.");
     });
 }
-</script> 
+</script>
