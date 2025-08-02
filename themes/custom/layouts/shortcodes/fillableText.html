@@ -11,15 +11,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uppy/4.18.0/uppy.min.js"></script>
 <script src="https://releases.transloadit.com/uppy/locales/v3.3.1/ar_SA.min.js"> </script>
 
+<!-- QuillJS Dependencies for clipboard fallback -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
+
 
 <style>
+::placeholder {
+  color: var(--secondary);
+}
+
+::selection {
+  color: var(--content);
+  background: var(--tertiary);
+}
+
 .fillable-text-container {
   font-family: Arial, sans-serif;
   margin: 20px 0;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: var(--theme);
 }
 
 .fillable-text-content {
@@ -33,11 +46,12 @@
   min-width: 120px;
   max-width: 400px;
   width: auto;
-  border: 1px solid #ccc;
+  border: 1px solid var(--secondary);
   border-radius: 4px;
   padding: 4px 8px;
   margin: 0 4px;
-  background-color: white;
+  background-color: var(--theme);
+  color: var(--primary);
   font-family: inherit;
   font-size: inherit;
   box-sizing: border-box;
@@ -59,11 +73,12 @@
   width: 100%;
   min-height: 60px;
   max-height: 300px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--secondary);
   border-radius: 4px;
   padding: 8px 12px;
   margin: 8px 0;
-  background-color: white;
+  background-color: var(--theme);
+  color: var(--primary);
   font-family: inherit;
   font-size: inherit;
   line-height: 1.4;
@@ -114,18 +129,28 @@
 .fillable-image-blank {
   display: block;
   margin: 20px 0;
-  border: 2px dashed #ccc;
+  border: 2px dashed var(--secondary);
   border-radius: 8px;
-  background-color: #fafafa;
+  background-color: var(--theme);
+  color: var(--primary);
   transition: border-color 0.2s ease;
   position: relative;
   overflow: hidden;
   min-height: 150px;
 }
 
+.uppy-Dashboard-AddFiles-title {
+  color: var(--primary);
+}
+
+.uppy-Dashboard-browse {
+  color: #fbb03b;
+  text-decoration: underline;
+}
+
 .fillable-image-blank.has-image {
   border-style: solid;
-  border-color: #007bff;
+  border-width: 1px;
   min-height: auto;
 }
 
@@ -205,6 +230,12 @@
   height: auto !important;
   border: none !important;
   background: transparent !important;
+  display: flex;
+  align-items: center;
+}
+
+.uppy-Dashboard-innerWrap {
+  flex: 1;
 }
 
 .uppy-Dashboard-dropFilesHereHint {
@@ -212,8 +243,85 @@
   color: #666 !important;
 }
 
+.uppy-Dashboard-AddFiles {
+  border: none !important;
+}
+
 .image-url-input {
   display: none;
+}
+
+/* QuillJS Fallback Editor Styles */
+.quill-fallback-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--theme);
+  color: var(--content);
+  border-top: 2px solid #007bff;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+  z-index: 1000;
+  max-height: 80vh;
+  display: none;
+  overflow: hidden;
+}
+
+.quill-fallback-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quill-fallback-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.quill-fallback-close {
+  background: var(--tertiary);
+  color: var(--content);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.quill-fallback-close:hover {
+  background: #545b62;
+}
+
+.quill-fallback-content {
+  height: 400px;
+  overflow: auto;
+}
+
+.quill-fallback-editor {
+  height: 100%;
+  border: none;
+}
+
+.ql-editor {
+  direction: rtl;
+  text-align: right;
+}
+
+.quill-fallback-instructions {
+  background: #e7f3ff;
+  color: var(--tertiary);
+  padding: 10px 20px;
+  font-size: 14px;
+  border-bottom: 1px solid #bee5eb;
+  text-align: center;
+}
+
+#quill-fallback-select-button {
+  width: 100%;
+  color: var(--secondary);
 }
 </style>
 
@@ -237,11 +345,28 @@
   <div id="copiedMessage" class="copied-message">{{ $successText }}</div>
 </div>
 
+<!-- QuillJS Fallback Editor -->
+<div id="quillFallbackContainer" class="quill-fallback-container" dir="rtl">
+  <div class="quill-fallback-header">
+    <h3 class="quill-fallback-title">اكتمل المنشور 🎉</h3>
+    <button class="quill-fallback-close" onclick="closeFallbackEditor()">✕ إغلاق</button>
+  </div>
+  <div class="quill-fallback-instructions">
+    <button id="quill-fallback-select-button">اضغط هنا لتحديد النص ونسخه الى منصة Mighty</button>
+  </div>
+  <div class="quill-fallback-content">
+    <div id="quillFallbackEditor" class="quill-fallback-editor"></div>
+  </div>
+</div>
+
 <script>
 // Generate a unique ID for this fillable text instance
 const containerId = 'fillableText_{{ $containerId }}';
 document.getElementById('fillableContainer').setAttribute('data-container-id', containerId);
 const now = Date.now();
+
+// Global QuillJS editor instance for fallback
+let quillFallbackEditor = null;
 
 // Debounce function
 function debounce(func, wait) {
@@ -345,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .replace(/<code>__IMAGE_BLANK__:([^:]*):?(.*?)<\/code>/g, function(match, id, placeholder) {
       const savedValue = savedValues[id] || '';
-      return `<div class="fillable-image-blank" id="${id}" data-placeholder="${placeholder.trim()}" data-original="${match}">
+      return `<div class="fillable-image-blank ${savedValue ? 'has-image': ''}" id="${id}" data-placeholder="${placeholder.trim()}" data-original="${match}">
         <input type="hidden" class="image-url-input" value="${savedValue}">
         <div class="image-upload-container">
           ${savedValue ? `<img src="${savedValue}" alt="Uploaded Image" class="uploaded-image">
@@ -627,6 +752,57 @@ function initializeUppyForContainer(imageId, placeholder, uppyContainer, urlInpu
   });
 }
 
+// Initialize QuillJS editor for fallback (lazy initialization)
+function initializeFallbackEditor() {
+  if (quillFallbackEditor === null) {
+    quillFallbackEditor = new Quill('#quillFallbackEditor', {
+      theme: 'snow',
+      modules: {
+        toolbar: false // Disable toolbar for copying purposes
+      },
+      readOnly: false,
+      placeholder: ''
+    });
+
+    quillFallbackEditor.format('direction', 'rtl');
+    quillFallbackEditor.format('align', 'right');
+
+    const selectButton = document.getElementById('quill-fallback-select-button');
+    selectButton.addEventListener('click', function() {
+      quillFallbackEditor.focus();
+      quillFallbackEditor.setSelection(0, quillFallbackEditor.getLength());
+    });
+  }
+}
+
+// Show the QuillJS fallback editor with content
+function showFallbackEditor(htmlContent, errorMessage = null) {
+  // Initialize editor if not already done
+  initializeFallbackEditor();
+
+  // Set the content
+  quillFallbackEditor.root.innerHTML = htmlContent;
+
+  // Show the container
+  const container = document.getElementById('quillFallbackContainer');
+  container.style.display = 'block';
+
+  // Scroll into view
+  container.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+  // Small delay to ensure the editor is visible, then select all content
+  setTimeout(() => {
+    quillFallbackEditor.focus();
+    quillFallbackEditor.setSelection(0, quillFallbackEditor.getLength());
+  }, 300);
+}
+
+// Close the fallback editor
+function closeFallbackEditor() {
+  const container = document.getElementById('quillFallbackContainer');
+  container.style.display = 'none';
+}
+
 function copyFilledText(position) {
   const content = document.getElementById('fillableContent');
   const inputs = content.querySelectorAll('.fillable-blank');
@@ -662,6 +838,7 @@ function copyFilledText(position) {
   const data = [new ClipboardItem({ "text/html": blob })];
 
   // Copy to clipboard
+  showFallbackEditor(filledText);
   navigator.clipboard.write(data)
     .then(() => {
       const msg = document.getElementById("copiedMessage");
@@ -673,7 +850,7 @@ function copyFilledText(position) {
       }, 3000);
     })
     .catch(err => {
-      alert("حصل خطأ في نسخ النص. يرجى تحديد النص ونسخه.");
+      console.error("Clipboard API failed, showing fallback editor:", err);
     });
 }
 </script>
