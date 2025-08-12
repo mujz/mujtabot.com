@@ -1,11 +1,11 @@
 ---
-title: "Manno - Shall I compare thee to a summer's day?"
+title: Manno - Shall I compare thee to a summer's day?
 date: 2024-02-19T17:10:00+03:00
 ShowBreadCrumbs: false
 hideMeta: true
 comments: false
 hideFooter: true
-draft: true
+draft: false
 markup:
   goldmark:
     renderer:
