@@ -68,7 +68,7 @@
     <footer class="card-footer">{{ $footer | markdownify }}</footer>
     {{- end }}
     {{- if $href }}
-    <a class="card-link" aria-label="link to {{ $title | plainify }}" href="{{ $href }}"></a>
+    <a class="card-link" aria-label="link to {{ $title | plainify }}" href="{{ $href }}" target="_blank" rel="noopener noreferrer"></a>
     {{- end }}
   </div>
 </div>

@@ -6,7 +6,7 @@ cover:
   alt: flowers
   relative: true
 ---
-![flowers](bg.jpg)
+![Book: How to Listen by Thich Nhat Hanh](bg.jpg)
 <style>
 blockquote {
   color: #797b82;
