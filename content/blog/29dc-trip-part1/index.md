@@ -65,11 +65,13 @@ The street musician who gave the microphone to one of the participants and creat
 {{<callout>}}
 The sweet old lady who maintained the bathrooms at the campsite and became the grandmother of the group.
 
-{{<vimeo "Babaanne" "https://player.vimeo.com/video/1114884234?h=d166d9b2ad&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479">}}
+{{<vimeo "Babaanne" "https://player.vimeo.com/video/1114884234" "100%">}}
 {{</callout>}}
 
 {{<callout>}}
 The guy who gave a high five to one of the trip participants to help him complete a dare to "high five 5 strangers."
+
+{{<vimeo "High Five" "https://player.vimeo.com/video/1114912653" "100%">}}
 {{</callout>}}
 
 And the countless others who gave with kindness.
